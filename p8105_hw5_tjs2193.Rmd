@@ -1,0 +1,9 @@
+---
+title: "Data Science Homework 5"
+author: "Thirsten Stockton" 
+
+date: "November 16th, 2022"
+output: github_document
+---
+
+# Problem 1
