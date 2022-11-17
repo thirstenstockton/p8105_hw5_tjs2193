@@ -6,11 +6,14 @@ date: "November 16th, 2022"
 output: github_document
 ---
 
-## Problem 1
+# Problem 1
 
 ```{r, include=FALSE}
 
 library(tidyverse)
+library(rvest)
+library(httr)
+library(readr)
 options(tibble.print_min = 5)
 
 ```
@@ -60,7 +63,34 @@ exp_tidy_df %>%
 
 ```
 
-Looking at this spaghetti plot, you see that for those in the control arm, the outcome stays relatively stable during the duration of follow up time, while for those in the experimental arm, the outcome increases. 
+Looking at this spaghetti plot, you see that for those in the control arm, the outcome stays relatively stable during the duration of follow up time, while for those in the experimental arm, the outcome increases.   
+
+# Problem 2
+
+## Reading in raw data
+```{r}
+
+homocide_df = 
+  read_csv("https://raw.githubusercontent.com/washingtonpost/data-homicides/master/homicide-data.csv")
+  
+homocide_df
+
+```
+
+The raw data contains 12 columns and 52,179 rows. Important variables include variables pertaining to victim name, age sex, and race, the city and state, and disposition. 
+
+## Creating "city_state" variable
+
+```{r}
+
+homocide_df_fin =
+  homocide_df %>%
+  unite(city_state,c(city, state), sep = ", ", remove=FALSE)
+
+homocide_df_fin %>%
+    select(city_state)
+
+```
 
 
 
