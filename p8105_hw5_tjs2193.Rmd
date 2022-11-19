@@ -93,4 +93,21 @@ homocide_df_fin %>%
 ```
 
 
+## Solved vs. unsolved homocide cases by city
+
+```{r}
+
+homocide_df_fin %>%
+  mutate(crime = case_when(
+    disposition %in% c("Closed without arrest", "Open/No arrest") ~ "Unsolved Homocides",
+    disposition %in% c("Closed by arrest") ~ "Homocides")) %>%
+  group_by(city_state, crime) %>%
+   summarize (
+     n = n() ) %>%
+       knitr::kable()
+   
+  
+
+```
+
 
